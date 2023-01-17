@@ -1,0 +1,11 @@
+﻿@using HenrysBookstore.Models;
+@model BrowseLocation
+
+@using (Html.BeginForm("BrowseByLocation", "Home", FormMethod.Post))
+{
+    <div>
+        @Html.ValidationSummary(true)
+        @Html.DropDownListFor(x=>x.LocationSelected,Model.AllLocationOptions,
+            "Please Choose a Location",new{ onchange="this.form.submit();"})
+    </div>
+}

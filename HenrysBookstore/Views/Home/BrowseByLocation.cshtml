@@ -1,0 +1,76 @@
+﻿@using System.Globalization
+@using HenrysBookstore.Models;
+@model IEnumerable<BRANCH>
+
+@{
+    ViewBag.Title = "Browse By Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_SideNavigation")
+    </div>
+    <div class="col-md-4">
+        <h2>@ViewBag.Title</h2>
+        @Html.Action("BrowseByLocation", "BrowseLocation")
+        
+        @if (Model != null)
+        {
+            <br/>
+            <table class="results-tbl">
+                @foreach (var branch in Model)
+                {
+                    var curNum = branch.BRANCH_NUM;
+                    var curName = branch.BRANCH_NAME;
+                    var curLocation = branch.BRANCH_LOCATION;
+                    var curNumEmp = branch.NUM_EMPLOYEES;
+
+                    <tr>
+                        <th>Branch Number</th>
+                        <td>@curNum</td>
+                    </tr>
+                    <tr>
+                        <th>Branch Name</th>
+                        <td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@curName)</td>
+                    </tr>
+                    <tr>
+                        <th>Branch Location</th>
+                        <td>@curLocation</td>
+                    </tr>
+                    <tr>
+                        <th>Number of Employees</th>
+                        <td>@curNumEmp</td>
+                    </tr>
+                }
+
+            </table>
+        }
+    </div>
+    <div class="col-md-5">
+        @if (Model != null)
+        {
+            <br />
+            <table class="results-tbl">
+                @foreach (var inv in Model)
+                {
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity on Hand</th>
+                    </tr>
+
+                    foreach (var book in inv.INVENTORies.OrderBy(x=>x.BOOK.TITLE))
+                    {
+                        var curTitle = book.BOOK.TITLE;
+                        var curQntyOnHand = book.ON_HAND;
+
+                        <tr>
+                            <td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(@curTitle)</td>
+                            <td>@curQntyOnHand</td>
+                        </tr>
+                    }
+                }
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@using HenrysBookstore.Models;
+@model BrowseAuthor
+
+@using (Html.BeginForm("BrowseByAuthor", "Home", FormMethod.Post))
+{
+    <div>
+        @Html.ValidationSummary(true)
+        @Html.DropDownListFor(x=>x.AuthorSelected,Model.AllAuthorOptions,
+            "Select an Author", new{ onchange="this.form.submit();"})
+    </div>
+}

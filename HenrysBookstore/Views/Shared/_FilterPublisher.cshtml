@@ -1,0 +1,11 @@
+﻿@using HenrysBookstore.Models;
+@model BrowsePublisher
+
+@using (Html.BeginForm("BrowseByPublisher", "Home", FormMethod.Post))
+{
+    <div>
+        @Html.ValidationSummary(true)
+        @Html.DropDownListFor(x=>x.PublisherSelected,Model.AllPublisherOptions,
+            "Please Choose a Publisher",new{ onchange="this.form.submit();"})
+    </div>
+}

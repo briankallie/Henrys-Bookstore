@@ -1,0 +1,69 @@
+﻿@using System.Activities.Statements
+@using System.Globalization
+@using HenrysBookstore.Models;
+@model IEnumerable<AUTHOR>
+
+@{
+    ViewBag.Title = "Browse By Author";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_SideNavigation")
+    </div>
+    <div class="col-md-9">
+        <h2>@ViewBag.Title</h2>
+        @Html.Action("BrowseByAuthor", "BrowseAuthor")
+
+        @if (Model != null)
+        {
+            <br/>
+
+            foreach (var allAuthors in Model)
+            {
+                <table class="results-tbl">
+                    <tr>
+                        <th>Book Code</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Paperback?</th>
+                        <th>Publisher</th>
+                    </tr>
+
+                    @foreach (var singlebook in allAuthors.WROTEs)
+                    {
+                        var curBookCode = singlebook.BOOK_CODE;
+                        var curTitle = singlebook.BOOK.TITLE;
+                        var curType = singlebook.BOOK.TYPE;
+                        var curPrice = Convert.ToDecimal(singlebook.BOOK.PRICE).ToString("0.00");
+                        var curPaperback = singlebook.BOOK.PAPERBACK;
+                        var curPublisher = singlebook.BOOK.PUBLISHER.PUBLISHER_NAME;
+
+                        var formattedPaperback = "";
+
+                        if (curPaperback == "1")
+                        {
+                            formattedPaperback = "True";
+                        }
+                        else
+                        {
+                            formattedPaperback = "False";
+                        }
+
+                        <tr>
+                            <td>@curBookCode</td>
+                            <td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(curTitle)</td>
+                            <td>@curType</td>
+                            <td>$@curPrice</td>
+                            <td>@formattedPaperback</td>
+                            <td>@curPublisher</td>
+                        </tr>
+
+                    }
+                </table>
+            }
+        }
+    </div>
+</div>

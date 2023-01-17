@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div id="home-nav" class="col-md-12">
+        <a href="@Url.Action("BrowseInventory", "Home")">
+            <div class="nav-card col-md-6">
+                <p>Browse Inventory</p>
+                <img src="~/Content/images/inventory.jpg" />
+
+            </div>
+        </a>
+        <a href="@Url.Action("BrowseByAuthor", "Home")">
+            <div class="nav-card col-md-6">
+                <p>Browse by Author</p>
+                <img src="~/Content/images/author.jpg" />
+
+            </div>
+        </a>
+        <a href="@Url.Action("BrowseByPublisher", "Home")">
+            <div class="nav-card col-md-6">
+                <p>Browse by Publisher</p>
+                <img src="~/Content/images/publisher.jpg" />
+
+            </div>
+        </a>
+        <a href="@Url.Action("BrowseByLocation", "Home")">
+            <div class="nav-card col-md-6">
+                <p>Browse by Location</p>
+                <img src="~/Content/images/bookstore.jpg" />
+
+            </div>
+        </a>
+    </div>
+</div>

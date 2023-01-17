@@ -1,0 +1,98 @@
+﻿@using System.ComponentModel.DataAnnotations
+@model HenrysBookstore.Models.Feedback
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function SendFeedback(formData) {
+            var target = $("#feedbackForm");
+
+            if (formData && formData.fname != null && formData.lname != null && 
+                formData.email != null && formData.confirmemail != null && 
+                formData.phonenumber != null && formData.branchname != null && 
+                formData.comments != null) {
+                target.empty();
+                target.append("<p><strong>--- FEEDBACK RECEIVED ---</strong></p>" + 
+                    "First Name: " + formData.fname + "<br />" + 
+                    "Last Name: " + formData.lname + "<br />" + 
+                    "Email: " + formData.email + "<br />" + 
+                    "Phone Number: " + formData.phonenumber + "<br />" + 
+                    "Branch Name: " + formData.branchname + "<br />" + 
+                    "Comments: " + formData.comments);
+            }
+            else {
+                target.append("ERROR!  Please check your entry.  No information has been sent.");
+            }
+        }
+    </script>
+}
+
+@{
+    ViewBag.Title = "Contact Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_SideNavigation")
+    </div>
+    <div class="col-md-9">
+        <h2>@ViewBag.Title</h2>
+        <div id="loading" style="display: none">
+            <p>
+                Thank you for sharing your comments with Henry's Bookstore <br />
+                Management.  We will be in touch with you shortly via email.
+            </p>
+        </div>
+        <div id="feedbackForm">
+            @using (Ajax.BeginForm("Feedback",
+                "Home",
+                new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    InsertionMode = InsertionMode.Replace,
+                    LoadingElementId = "loading",
+                    LoadingElementDuration = 10000,
+                    OnSuccess = "SendFeedback",
+                }))
+
+            {
+            <table class="fbForm">
+                @Html.ValidationSummary(false)
+                <tr>
+                    <td>First Name</td>
+                    <td>@Html.TextBoxFor(s => s.fname)</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>@Html.TextBoxFor(s => s.lname)</td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td>@Html.TextBoxFor(s => s.email)</td>
+                </tr>
+                <tr>
+                    <td>Confirm Email Address</td>
+                    <td>@Html.TextBoxFor(s => s.confirmemail)</td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td>@Html.TextBoxFor(s => s.phonenumber)</td>
+                </tr>
+                <tr>
+                    <td>Branch</td>
+                    <td>@Html.DropDownListFor(s => s.branchname, Model.AllBranchOptions, "Please Choose a Location")</td>
+                </tr>
+                <tr>
+                    <td>Comments</td>
+                    <td>@Html.TextAreaFor(s => s.comments)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="reset" value="Reset" /><input type="submit" value="Save" /></td>
+                </tr>
+            </table>
+            }
+        </div>
+    </div>
+</div>

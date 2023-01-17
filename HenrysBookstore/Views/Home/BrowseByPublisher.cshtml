@@ -1,0 +1,64 @@
+﻿@using System.Globalization
+@using HenrysBookstore.Models;
+@model IEnumerable<PUBLISHER>
+
+@{
+    ViewBag.Title = "Browse By Publisher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_SideNavigation")
+    </div>
+    <div class="col-md-9">
+        <h2>@ViewBag.Title</h2>
+        @Html.Action("BrowseByPublisher", "BrowsePublisher")
+
+        @if (Model != null)
+        {
+            <br/>
+
+
+            foreach (var pub in Model)
+            {
+                <table class="results-tbl">
+                    <tr>
+                        <th>Book Code</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Paperback?</th>
+                    </tr>
+
+                    @foreach (var allBooks in pub.BOOKs)
+                    {
+                        var curBookCode = allBooks.BOOK_CODE;
+                        var curTitle = allBooks.TITLE;
+                        var curType = allBooks.TYPE;
+                        var curPrice = Convert.ToDecimal(allBooks.PRICE).ToString("0.00");
+                        var curPaperback = allBooks.PAPERBACK;
+                        var formattedPaperback = "";
+
+                        if (curPaperback == "1")
+                        {
+                            formattedPaperback = "True";
+                        }
+                        else
+                        {
+                            formattedPaperback = "False";
+                        }
+
+                        <tr>
+                            <td>@curBookCode</td>
+                            <td>@CultureInfo.CurrentCulture.TextInfo.ToTitleCase(curTitle)</td>
+                            <td>@curType</td>
+                            <td>$@curPrice</td>
+                            <td>@formattedPaperback</td>
+                        </tr>
+                    }
+                </table>
+            }
+        }
+    </div>
+</div>

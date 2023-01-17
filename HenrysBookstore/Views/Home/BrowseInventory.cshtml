@@ -1,0 +1,22 @@
+﻿@using HenrysBookstore.Models;
+@model IEnumerable<INVENTORY>
+
+@{
+    ViewBag.Title = "Browse Inventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_SideNavigation")
+    </div>
+    <div class="col-md-9">
+        <h2>@ViewBag.Title</h2>
+        @foreach (var allBooks in Model)
+        {
+            string curBook = allBooks.BOOK_CODE;
+
+            <img class="book-thumb" src="~/Content/images/@curBook/thumb.jpg"/>
+        }
+    </div>
+</div>

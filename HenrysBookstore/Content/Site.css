@@ -1,0 +1,188 @@
+﻿body {
+    padding-bottom: 0;
+    max-width: 1000px;
+    margin: auto;
+    background: url("images/wood.jpg") repeat-y;
+    background-size: cover;
+}
+
+p {
+    margin: revert;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    max-width: 1000px;
+    background-color: #d6d2ad;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.header-image {
+    background: url("images/books.jpg") repeat-x;
+    height: 132px;
+    background-position: left top;
+}
+
+.header-image h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: #d6d2ad;
+    line-height: 132px;
+    margin: 0;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+p#tagline-disclaimer {
+    text-align: center;
+    background-color: #82878b;
+    padding-bottom: 15px;
+    margin: 0;
+}
+
+div#home-nav {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+}
+
+.nav-card {
+    text-align: center;
+    background-color: #82878b;
+    margin: 15px;
+}
+
+.nav-card p {
+    color: #ffffff;
+    font-weight: bold;
+
+}
+
+.nav-card img {
+    margin-bottom: 35px;
+    width: 150px;
+    height: 175px;
+    }
+
+.side-nav {
+    background: #ffffff;
+    width: 100%;
+    padding: 10px;
+}
+
+.side-nav ul {
+    list-style: none;
+}
+
+img.book-thumb {
+    height: 193px;
+    width: 125px;
+}
+
+table.results-tbl th {
+    padding: 0 5px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+table.results-tbl td {
+    padding: 4px 10px;
+    border: 1px solid white;
+}
+
+table.results-tbl tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+table.results-tbl tr:nth-child(odd) {
+    background-color: #d6d2ad;
+}
+
+#loading {
+    width: 75%;
+    border: 2px solid #000000;
+    color: #000000;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+
+#loading p {
+    margin: 20px;
+    text-align: left;
+}
+
+table.fbForm td {
+    padding: 5px;
+}
+
+table.fbForm input[type="text"], 
+table.fbForm textarea,
+table.fbForm select {
+    min-width: 100%;
+}
+
+table.fbForm input[type="submit"],
+table.fbForm input[type="reset"] {
+    margin-right: 20px;
+    min-width: 80px
+}
+
+table.fbForm textarea {
+    min-height: 100px;
+}
+
+footer p {
+    font-size: 10px;
+    text-align: center;
+    color: #000000;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+
+    ul.navbar-nav {
+        float: right;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+
+    div#home-nav {
+        padding: 0 180px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .nav-card {
+        width: 45%;
+        display: inline-block;
+    }
+}
